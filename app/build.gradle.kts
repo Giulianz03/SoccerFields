@@ -2,6 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    /* Plugin KSP */
+    alias(libs.plugins.google.devtools.ksp)
+
+    /* Plugin Hilt */
+    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
@@ -56,4 +62,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    /* Retrofit */
+    implementation(libs.retrofit)
+    implementation(libs.convert.gson)
+
+    /* Dependency Injection */
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 }
