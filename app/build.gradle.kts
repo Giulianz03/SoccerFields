@@ -65,10 +65,15 @@ dependencies {
 
     /* Retrofit */
     implementation(libs.retrofit)
-    implementation(libs.convert.gson)
+    implementation(libs.converter.gson)
 
     /* Dependency Injection */
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+
+    /* Room Database */
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }
