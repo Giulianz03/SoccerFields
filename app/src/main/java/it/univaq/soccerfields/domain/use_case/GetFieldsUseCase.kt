@@ -1,5 +1,6 @@
 package it.univaq.soccerfields.domain.use_case
 
+import android.util.Log
 import it.univaq.soccerfields.common.Resource
 import it.univaq.soccerfields.domain.model.Field
 import it.univaq.soccerfields.domain.repository.FieldLocalRepository
@@ -20,8 +21,9 @@ class GetFieldsUseCase @Inject constructor(
             emit(Resource.Loading("Loading..."))
 
             localRepository.getAll()
-                .catch {
-                    emit(Resource.Error("Error: data not found in local database"))
+                .catch {e ->
+                    Log.e("GetFieldsUseCase", "Errore nel recupero locale", e)
+                    emit(Resource.Error("Error: data not found in local database ${e.message}"))
                 }
                 .collect{ list ->
                     if(list.isEmpty()){

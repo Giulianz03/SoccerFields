@@ -8,6 +8,9 @@ plugins {
 
     /* Plugin Hilt */
     alias(libs.plugins.dagger.hilt.android)
+
+    /* Plugin Serialization*/
+    alias(libs.plugins.jetbrains.serialization)
 }
 
 android {
@@ -76,4 +79,11 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    /* Navigation Compose*/
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
+
+    /* ViewModel Compose*/
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 }

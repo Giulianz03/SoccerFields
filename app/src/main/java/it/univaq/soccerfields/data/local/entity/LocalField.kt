@@ -5,13 +5,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "fields")
 data class LocalField(
-    @PrimaryKey
     val id: Int?,
+    @PrimaryKey
     val nome: String,
     val citta: String,
     val regione: String,
-    val latitudine: Long,
-    val longitudine: Long,
+    val latitudine: Double,
+    val longitudine: Double,
     val larghezza: Int,
     val lunghezza: Int,
     val tipo_superficie: String,

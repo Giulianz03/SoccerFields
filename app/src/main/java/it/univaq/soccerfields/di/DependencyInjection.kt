@@ -51,6 +51,8 @@ abstract class RepositoryModule{
     abstract fun localRepository(repository: FieldRoomRepository): FieldLocalRepository
 }
 
+@Module
+@InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
     @Provides
@@ -61,6 +63,7 @@ object DatabaseModule {
                 FieldDatabase::class.java,
                 "field_database"
             )
+            .fallbackToDestructiveMigration(true)
             .build()
 
     @Provides
