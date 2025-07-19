@@ -93,4 +93,8 @@ dependencies {
     /* GoogleMaps */
     implementation(libs.maps.compose)
     implementation(libs.play.services.maps)
+
+    /* Runtime Permission */
+    implementation(libs.accompanist.permissions)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 }
