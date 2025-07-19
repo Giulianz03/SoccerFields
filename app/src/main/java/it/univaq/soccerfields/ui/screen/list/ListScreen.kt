@@ -46,6 +46,7 @@ fun ListScreen(
     Column (modifier = modifier) {
 
         Text(
+            modifier = Modifier.padding(16.dp),
             text = "Soccer Fields",
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,

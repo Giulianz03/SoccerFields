@@ -1,4 +1,4 @@
-package it.univaq.soccerfields.ui.screen.list
+package it.univaq.soccerfields.ui.screen.map
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,17 +12,17 @@ import it.univaq.soccerfields.domain.use_case.GetFieldsUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-data class ListUiState(
+data class MapUiState(
     val fields: List<Field> = emptyList(),
     val loadingMessage: String? = null,
     val error: String? = null
 )
 
 @HiltViewModel
-class ListViewModel @Inject constructor(
-    private val getFieldsUseCase: GetFieldsUseCase
+class MapViewModel @Inject constructor(
+    private val getFieldsUseCase: GetFieldsUseCase,
 ): ViewModel() {
-    var uiState by mutableStateOf(ListUiState())
+    var uiState by mutableStateOf(MapUiState())
         private set
 
     init {

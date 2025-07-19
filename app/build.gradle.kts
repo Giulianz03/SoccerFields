@@ -11,6 +11,9 @@ plugins {
 
     /* Plugin Serialization*/
     alias(libs.plugins.jetbrains.serialization)
+
+    /* Secrets Gradle Plugin*/
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -86,4 +89,8 @@ dependencies {
 
     /* ViewModel Compose*/
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    /* GoogleMaps */
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps)
 }
