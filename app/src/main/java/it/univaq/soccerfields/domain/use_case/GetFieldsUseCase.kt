@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import javax.inject.Inject
 
+//Use Case perché sto usando due repository differente, non conviene farlo fare ad un viewModel
 class GetFieldsUseCase @Inject constructor(
     private val remoteRepository: FieldRemoteRepository,
     private val localRepository: FieldLocalRepository,

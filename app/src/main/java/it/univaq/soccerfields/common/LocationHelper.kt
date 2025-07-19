@@ -11,7 +11,7 @@ class LocationHelper(private val context: Context, private val onLocationChanged
     //Recupero dal sistema il Location Service
     private val manager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
 
-    private val listener = LocationListener{ location ->
+    private val listener = LocationListener { location ->
         onLocationChanged(location)
     }
 
@@ -21,12 +21,12 @@ class LocationHelper(private val context: Context, private val onLocationChanged
         val isNetworkEnable = manager?.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ?: false
 
         //Controllo se sono garantiti i permessi
-        val isFineGaranted = ContextCompat.checkSelfPermission(context,android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-        val isCoarseGaranted = ContextCompat.checkSelfPermission(context,android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        val isFineGranted = ContextCompat.checkSelfPermission(context,android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        val isCoarseGranted = ContextCompat.checkSelfPermission(context,android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
 
-        if(isGPSEnable && isFineGaranted){
+        if(isGPSEnable && isFineGranted){
             manager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10f, listener)
-        } else if (isNetworkEnable && isCoarseGaranted){
+        } else if (isNetworkEnable && isCoarseGranted){
             manager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10f, listener)
         }
     }

@@ -8,7 +8,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.CameraPositionState
 import com.google.maps.android.compose.MarkerState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -24,6 +26,14 @@ data class MapUiState(
     val loadingMessage: String? = null,
     val error: String? = null,
     val markerState: MarkerState? = null,
+    val cameraPositionState: CameraPositionState = CameraPositionState(
+        position = CameraPosition(
+            LatLng(0.0,0.0),
+            10f,
+            0f,
+            0f
+        )
+    ),
     val filteredFields: List<Field> = emptyList(),
 )
 
@@ -41,13 +51,19 @@ class MapViewModel @Inject constructor(
         private set
 
     private val locationHelper = LocationHelper(context = context){ location ->
-        Log.d("LocationDebug", "Lat: ${location.latitude}, Lng: ${location.longitude}")
         //Creo un markerState con la mia posizione
         val markerState = MarkerState(
             position = LatLng(location.latitude, location.longitude)
         )
+        //Aggiorno il cameraPosition
+        val cameraPosition = CameraPosition(
+            LatLng(location.latitude,location.longitude),
+            10f,
+            0f,
+            0f,
+        )
         //Filtro i campi entro una certa distanza dalla mia posizione
-        val filtredfields = uiState.fields.filter {
+        val filteredFields = uiState.fields.filter {
             val fieldLocation = Location("field").apply {
                 latitude = it.latitudine
                 longitude = it.longitudine
@@ -57,7 +73,10 @@ class MapViewModel @Inject constructor(
         //Passo allo uiState sia la mia posizione che la lista filtrata
         uiState = uiState.copy(
             markerState = markerState,
-            filteredFields = filtredfields
+            filteredFields = filteredFields,
+            cameraPositionState = CameraPositionState(
+                position = cameraPosition
+            ),
         )
     }
 
@@ -68,7 +87,7 @@ class MapViewModel @Inject constructor(
     fun onEvent(event: MapEvent) {
         when(event){
             is MapEvent.StartLocation -> {
-                locationHelper.stop()
+                locationHelper.start()
             }
             is MapEvent.StopLocation -> {
                 locationHelper.stop()

@@ -11,4 +11,6 @@ interface FieldLocalRepository {
     suspend fun deleteAll()
 
     fun getAll(): Flow<List<Field>>
+
+    fun getFieldByAddress(address: String, city: String, region: String ): Flow<List<Field>>
 }

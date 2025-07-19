@@ -1,5 +1,6 @@
 package it.univaq.soccerfields.ui.screen.list
 
+import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,9 +12,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import it.univaq.soccerfields.DetailActivity
 import it.univaq.soccerfields.domain.model.Field
 
 @Composable
@@ -22,6 +25,7 @@ fun ListScreen(
     viewModel: ListViewModel = hiltViewModel()
 ) {
     val uiState = viewModel.uiState
+    val context = LocalContext.current
 
     if (uiState.loadingMessage != null){
         Box(
@@ -61,7 +65,15 @@ fun ListScreen(
                     modifier = Modifier.fillMaxWidth(),
                     field = field,
                     onItemClick = {
-                        //TODO: handle item click
+                        //Passaggio non da screen a screen ma verso una activity (non posso usare navcontroller)
+                        context.startActivity(Intent(context, DetailActivity::class.java)
+                            .also {
+                                it.putExtra("nome", field.nome)
+                                it.putExtra("citta", field.citta)
+                                it.putExtra("regione", field.regione)
+                                it.putExtra("indirizzo", field.indirizzo)
+                            }
+                        )
                     }
                 )
             }
