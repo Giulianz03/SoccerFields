@@ -38,9 +38,7 @@ fun DetailScreen(
     modifier: Modifier = Modifier,
     viewModel: DetailViewModel = hiltViewModel(),
     nome: String?,
-    citta: String?,
-    regione: String?,
-    indirizzo: String?
+    citta: String?
 ){
     val activity = LocalContext.current as Activity
     val uiState = viewModel.uiState
@@ -49,9 +47,7 @@ fun DetailScreen(
         viewModel.onEvent(
             DetailEvent.OnFieldSelected(
                 name = nome,
-                address = indirizzo,
-                city = citta,
-                region = regione,
+                city = citta
             )
         )
     }

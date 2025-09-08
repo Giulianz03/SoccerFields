@@ -70,8 +70,8 @@ class FieldRoomRepository @Inject constructor(
             }
     }
 
-    override fun getFieldByName(name: String): Flow<List<Field>> {
-        return  fieldDAO.getFieldByName(name)
+    override fun getFieldByNameAndCity(name: String, city: String): Flow<List<Field>> {
+        return  fieldDAO.getFieldByNameAndCity(name, city)
             .map { list ->
                 list.map(LocalField::toModel)
             }

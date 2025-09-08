@@ -21,8 +21,8 @@ interface FieldDAO {
     @Query("SELECT * FROM fields WHERE regione = :region AND citta = :city AND indirizzo = :address ORDER BY regione, citta ASC")
     fun getFieldByAddress(region: String, city: String, address: String): Flow<List<LocalField>>
 
-    @Query("SELECT * FROM fields WHERE nome = :name ORDER BY regione, citta ASC")
-    fun getFieldByName(name: String): Flow<List<LocalField>>
+    @Query("SELECT * FROM fields WHERE nome = :name AND citta = :city ORDER BY regione, citta ASC")
+    fun getFieldByNameAndCity(name: String, city: String): Flow<List<LocalField>>
 
     @Query("DELETE FROM fields")
     suspend fun deleteAll()

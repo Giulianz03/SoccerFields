@@ -17,13 +17,9 @@ class DetailActivity: ComponentActivity() {
             SoccerFieldsTheme {
                 val nome = intent.getStringExtra("nome")
                 val citta = intent.getStringExtra("citta")
-                val regione = intent.getStringExtra("regione")
-                val indirizzo = intent.getStringExtra("indirizzo")
                 DetailScreen(
                     nome = nome,
-                    citta = citta,
-                    regione = regione,
-                    indirizzo = indirizzo
+                    citta = citta
                 )
             }
         }
