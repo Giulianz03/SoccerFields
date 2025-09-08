@@ -17,7 +17,7 @@ data class DetailUiState(
 )
 
 sealed class DetailEvent {
-    data class OnFieldSelected(val address: String?, val city: String?, val region: String?): DetailEvent()
+    data class OnFieldSelected(val name: String?, val address: String?, val city: String?, val region: String?): DetailEvent()
 }
 
 @HiltViewModel
@@ -31,10 +31,8 @@ class DetailViewModel @Inject constructor(
         when(event) {
             is DetailEvent.OnFieldSelected -> {
                 viewModelScope.launch {
-                    localRepository.getFieldByAddress(
-                        region = event.region ?: "",
-                        city = event.city ?: "",
-                        address = event.address ?: "",
+                    localRepository.getFieldByName(
+                        name = event.name ?: ""
                     ).collect {
                         uiState = uiState.copy(
                             fields = it,

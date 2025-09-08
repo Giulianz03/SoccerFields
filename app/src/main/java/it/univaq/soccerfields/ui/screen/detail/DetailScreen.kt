@@ -48,6 +48,7 @@ fun DetailScreen(
     LifecycleEventEffect(Lifecycle.Event.ON_CREATE) {
         viewModel.onEvent(
             DetailEvent.OnFieldSelected(
+                name = nome,
                 address = indirizzo,
                 city = citta,
                 region = regione,

@@ -15,7 +15,7 @@ class DetailActivity: ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SoccerFieldsTheme {
-                val nome = intent.getStringExtra("none")
+                val nome = intent.getStringExtra("nome")
                 val citta = intent.getStringExtra("citta")
                 val regione = intent.getStringExtra("regione")
                 val indirizzo = intent.getStringExtra("indirizzo")

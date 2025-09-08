@@ -68,7 +68,7 @@ class MapViewModel @Inject constructor(
                 latitude = it.latitudine
                 longitude = it.longitudine
             }
-            location.distanceTo(fieldLocation) <= 10000
+            location.distanceTo(fieldLocation) <= 1000000
         }
         //Passo allo uiState sia la mia posizione che la lista filtrata
         uiState = uiState.copy(

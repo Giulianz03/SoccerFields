@@ -13,4 +13,6 @@ interface FieldLocalRepository {
     fun getAll(): Flow<List<Field>>
 
     fun getFieldByAddress(address: String, city: String, region: String ): Flow<List<Field>>
+
+    fun getFieldByName(name: String) : Flow<List<Field>>
 }
